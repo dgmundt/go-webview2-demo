@@ -19,7 +19,7 @@ This demo is Windows-only and uses Microsoft Edge WebView2.
 ## Run
 
 ```bash
-go run .
+go run ./cmd/demo
 ```
 
 The app starts a localhost HTTP server and loads the template-rendered page in WebView2.
