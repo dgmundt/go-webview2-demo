@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{.Title}}</title>
+  <link rel="stylesheet" href="/static/app.css" />
+  <script src="https://unpkg.com/htmx.org@2.0.4" crossorigin="anonymous"></script>
+</head>
+<body class="app-body">
+  <main class="app-shell">
+    <section class="card">
+      <h1 class="card-title">{{.Title}}</h1>
+      <p class="card-description">
+        Server-rendered Go templates with HTMX requests. No custom JavaScript and no embedded CSS.
+      </p>
+
+      <form
+        class="form-row"
+        hx-post="/greet"
+        hx-target="#result"
+        hx-swap="innerHTML"
+      >
+        <label class="visually-hidden" for="name">Your name</label>
+        <input
+          id="name"
+          name="name"
+          type="text"
+          value="WebView2 Explorer"
+          class="input-field"
+          placeholder="Type your name"
+        />
+        <button
+          type="submit"
+          class="button"
+        >
+          Call Go Handler
+        </button>
+      </form>
+
+      <div
+        id="runtime"
+        class="runtime-box"
+        hx-get="/runtime"
+        hx-trigger="load"
+        hx-swap="innerHTML"
+      >
+        Loading runtime information...
+      </div>
+
+      <div id="result" class="result-box"></div>
+    </section>
+  </main>
+</body>
+</html>
